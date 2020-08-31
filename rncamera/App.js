@@ -1,24 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, Button, Linking, Image } from "react-native";
-// import PhotoCaptureComponent from "./components/PhotoCapture";
-import * as ImagePicker from "expo-image-picker";
+// import ColorView from "./components/ColorView";
+import BrowsePhoto from "./components/BrowsePhoto";
 
 export default function App() {
-  let handlePhoto = async () => {
-    const options = {};
-
-    let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
-
-    if (permissionResult.granted === false) {
-      alert("Permission to access camera roll is required!");
-      return;
-    }
-    console.log();
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    console.log(pickerResult);
-  };
-
   return (
     <View style={styles.container}>
       <Image
@@ -39,13 +25,7 @@ export default function App() {
         }}
       />
       <Text style={styles.headerText} />
-      <Button
-        style={styles.baseText}
-        title="Quienes Son?"
-        onPress={() => {
-          return handlePhoto();
-        }}
-      />
+      <BrowsePhoto />
       <Text style={styles.headerText} />
       <StatusBar style="auto" />
     </View>
