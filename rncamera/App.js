@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, Button, Linking, Image } from "react-native";
-// import ColorView from "./components/ColorView";
+
 import BrowsePhoto from "./components/BrowsePhoto";
 
 export default function App() {
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
-    textDecorationColor: "#fff",
   },
   baseText: {
     color: "#fff",

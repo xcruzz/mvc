@@ -1,5 +1,5 @@
-export default () => {
-  return {
+export function GetMockPredictions() {
+  let r = {
     id: "d25d4b11-cb80-4000-926a-d8a18201e366",
     project: "41641520-c2cf-4e4c-883f-a001e9d2e4c4",
     iteration: "699b7d9d-d5ab-4789-a689-236cd551181b",
@@ -73,4 +73,5 @@ export default () => {
       },
     ],
   };
-};
+  return r;
+}
