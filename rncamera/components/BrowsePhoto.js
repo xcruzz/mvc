@@ -12,16 +12,24 @@ export default class BrowsePhoto extends React.Component {
     let definiteMatches = response.predictions.filter(
       (match) => match.probability > tolerance
     );
-    // let maybeMatches = response.predictions.filter(
-    //   (match) => match.probability <= tolerance
-    // );
 
     let parties = definiteMatches.map((p) => {
       return { party: p.tagName, probability: p.probability };
     });
-    console.log(`LOG: [${parties.length} PARTIES MATCHED T - ${tolerance}]`);
-
-    //doSomething(parties);
+    if (parties.length > 0) {
+      let mostProbable = parties[0];
+      let max_prob = 0;
+      parties.map((pty) => {
+        if (pty.probability > max_prob) mostProbable = pty;
+      });
+      console.log(`LOG: [${parties.length} PARTIES MATCHED T - ${tolerance}]`);
+      console.log(`[INTERESANTE: ${parties.length} PARTIDO(S)]`);
+      console.log(`[MÁS PROBABLE: ${mostProbable.party}]`);
+      return mostProbable.party;
+    } else {
+      console.log(`NADA INTERESANTE :(`);
+      return `NADA INTERESANTE :(`;
+    }
   };
 
   constructor(props) {
@@ -49,21 +57,36 @@ export default class BrowsePhoto extends React.Component {
     return (
       <Button
         style={styles.baseText}
-        title="Quienes Son?"
+        title="Audita Mi Foto!"
         onPress={() => {
           this.selectPhotoFromLibrary()
             .then((selectedImg) => {
+              console.log(`LOG: [IMAGE - RESIZE]`);
+              //console.log(`${JSON.stringify(selectedImg)}`);
+              //Resize
               let predictionResponse = CognitiveService.PredictLogoSvc(
                 selectedImg
               );
               predictionResponse.then((predictionResponse) => {
                 console.log(`LOG: [PREDICTIONS - RECEIVED])}`);
-                this.handlePredictionResponse(predictionResponse);
-                console.log(`LOG: [PREDICTION HANDLED]`);
+                let mProbable = this.handlePredictionResponse(
+                  predictionResponse
+                );
+                if (mProbable) {
+                  alert(mProbable);
+                }
               });
             })
             .catch((error) => {
-              console.log(`LOG: [CATCH - ${error}]`);
+              if (
+                error.message.includes(
+                  "undefined is not an object (evaluating 'localUri.split')"
+                )
+              ) {
+                console.log(`LOG: [CATCH - CANCEL PHOTO LIBRARY]`);
+              } else {
+                console.log(`LOG: [CATCH - ${error.message}]`);
+              }
             });
         }}
       />
