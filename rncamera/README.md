@@ -14,7 +14,7 @@ expo start
 
 ## Usage
 
-![MVC APP](https://raw.githubusercontent.com/xcruzz/mvc/mvc_ImageRecognition/rncamera/assets/screenShot.png) {:height="50%" width="75%"}
+![MVC APP](https://raw.githubusercontent.com/xcruzz/mvc/mvc_ImageRecognition/rncamera/assets/screenShot.png)
 
 ## Contributing
 
