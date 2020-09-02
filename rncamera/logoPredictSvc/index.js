@@ -6,7 +6,8 @@ function timeoutPromise(timeout, err, promise) {
     setTimeout(reject.bind(null, err), timeout);
   });
 }
-const timeOut = 20000;
+const timeOut = 36000;
+const imgSize = 0;
 export function PredictLogoSvc(selectedImg) {
   const prediction = "1a377b443688419985e29b42d65923f8";
   const endPoint = "https://eastus.api.cognitive.microsoft.com/";
@@ -34,7 +35,7 @@ export function PredictLogoSvc(selectedImg) {
   return (
     timeoutPromise(
       timeOut,
-      new Error(`PREDICTION SERVICE - TIMED OUT (${timeOut})`),
+      new Error(`PREDICTION SERVICE : TIMED OUT (${timeOut})`),
       fetch(endPoint + predictionResourceId, {
         method: "POST",
         body: formData,
@@ -76,7 +77,12 @@ export function PredictLogoSvc(selectedImg) {
       //If response is not in json then in error
       .catch((error) => {
         //Error
-        console.log(`LOG: [CATCH - ${error.message}]`);
+        console.log(`LOG: [CATCH - ${error}]`);
+        console.log(
+          "LOG: \u001b[" + 90 + "m" + "[USING MOCK DATA]" + "\u001b[0m"
+        );
+        let r = GetMockPredictions();
+        return r;
       })
   );
 }
