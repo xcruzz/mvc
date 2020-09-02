@@ -14,7 +14,7 @@ expo start
 
 ## Usage
 
-![MVC APP Screenshot]("https://github.com/xcruzz/mvc/blob/mvc_ImageRecognition/rncamera/assets/screenShot.png")
+![MVC APP Screenshot]("https://raw.githubusercontent.com/xcruzz/mvc/mvc_ImageRecognition/rncamera/assets/screenShot.png")
 
 ## Contributing
 
